@@ -2483,7 +2483,7 @@
           <div class="apply-progress-fill" id="applyProgressBar"></div>
         </div>
 
-        <form id="applyMultiStepForm" novalidate>
+        <form id="applyMultiStepForm">
           <div class="apply-step active">
             <h3>Datos personales</h3>
             <p class="apply-step-subtitle">Completá esta información básica para continuar con tu postulación.</p>
@@ -2750,7 +2750,7 @@
   </section>
 
   
-<script>
+  <script>
   // PARALLAX DE LA SECCIÓN APLICÁ AHORA
   (function(){
     const bg = document.querySelector('.apply-motion-bg');
@@ -2758,10 +2758,8 @@
 
     function moveParallax(){
       if(!bg || !section) return;
-
       const rect = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
       if(rect.bottom > 0 && rect.top < windowHeight){
         const offset = rect.top * -0.18;
         bg.style.transform = `translateY(${offset}px) scale(1.08)`;
@@ -2773,7 +2771,7 @@
     window.addEventListener('resize', moveParallax);
   })();
 
-  // MULTISTEP FORM
+  // MULTISTEP FORM + ENVÍO A APPS SCRIPT
   (function(){
     const steps = document.querySelectorAll('.apply-step');
     const nextBtns = document.querySelectorAll('.apply-btn-next');
@@ -2857,7 +2855,6 @@
     function fileToBase64(file){
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
-
         reader.onload = () => {
           const base64 = String(reader.result).split(',')[1];
           resolve({
@@ -2866,7 +2863,6 @@
             data: base64
           });
         };
-
         reader.onerror = reject;
         reader.readAsDataURL(file);
       });
@@ -2908,6 +2904,7 @@
           telefono: getValue('telefono'),
           of: getRadioValue('tieneOnlyFans'),
           link: getValue('perfilOnlyfans'),
+          mensaje: getValue('mensaje'),
           foto_rostro_files: await filesToArray('fotoRostro'),
           foto_cuerpo_files: await filesToArray('fotoCuerpo'),
           foto_casual_files: await filesToArray('fotoCasual')
@@ -2929,10 +2926,13 @@
           currentStep = 0;
           updateSteps();
           if(successMessage) successMessage.style.display = 'block';
+          window.scrollTo({
+            top: document.getElementById('aplica-ahora').offsetTop - 80,
+            behavior: 'smooth'
+          });
         } else {
-          throw new Error(text);
+          throw new Error(text || 'Error desconocido al enviar');
         }
-
       } catch(err){
         console.error('Error al enviar formulario:', err);
         if(errorMessage){
@@ -2959,9 +2959,8 @@
     });
   });
 
-  // Animated counters
+  // CONTADORES
   const counters = document.querySelectorAll('.counter');
-
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -2991,12 +2990,10 @@
       requestAnimationFrame(updateCounter);
     });
   }, { threshold: 0.35 });
-
   counters.forEach(counter => counterObserver.observe(counter));
 
-  // Scroll reveal
+  // SCROLL REVEAL
   const reveals = document.querySelectorAll('.reveal');
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
@@ -3004,10 +3001,16 @@
       }
     });
   }, { threshold: 0.15 });
-
   reveals.forEach(el => observer.observe(el));
 
+  // INTRO
   window.addEventListener('load', () => {
     document.body.classList.add('loaded');
   });
 </script>
+
+  <a href="https://wa.me/5492643160729" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</body>
+</html>

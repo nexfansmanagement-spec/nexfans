@@ -2750,82 +2750,264 @@
   </section>
 
   
- <script>
-/* 🔥 SCRIPT ARREGLADO PARA ENVIAR JSON AL APPS SCRIPT */
+<script>
+  // PARALLAX DE LA SECCIÓN APLICÁ AHORA
+  (function(){
+    const bg = document.querySelector('.apply-motion-bg');
+    const section = document.querySelector('.apply-motion-section');
 
-document.addEventListener('DOMContentLoaded', () => {
+    function moveParallax(){
+      if(!bg || !section) return;
 
-  const form = document.getElementById('applyMultiStepForm');
-  const successMessage = document.getElementById('applySuccess');
-  const errorMessage = document.getElementById('applyError');
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
 
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const result = reader.result.split(',')[1];
-        resolve({
-          name: file.name,
-          type: file.type,
-          data: result
-        });
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  async function filesToArray(name) {
-    const input = form.querySelector(`input[name="${name}"]`);
-    if (!input || !input.files.length) return [];
-    return Promise.all(Array.from(input.files).map(fileToBase64));
-  }
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-
-    const btn = form.querySelector('.apply-btn-submit');
-    btn.disabled = true;
-    btn.textContent = 'Enviando...';
-
-    try{
-
-      const payload = {
-        nombre: form.querySelector('[name="nombre"]').value,
-        apellido: form.querySelector('[name="apellido"]').value,
-        fecha: form.querySelector('[name="fecha"]').value,
-        email: form.querySelector('[name="email"]').value,
-        telefono: form.querySelector('[name="telefono"]').value,
-
-        foto_rostro_files: await filesToArray('foto_rostro_files'),
-        foto_cuerpo_files: await filesToArray('foto_cuerpo_files'),
-        foto_casual_files: await filesToArray('foto_casual_files')
-      };
-
-      const res = await fetch('https://script.google.com/macros/s/AKfycby-yJgEyLzwEINSbBrIDTn0es44mEHZCcE5Dk6uoHWxP91jDcMwKE-EHcEqKwB3B4BQEA/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-
-      const text = await res.text();
-      console.log(text);
-
-      if(text.trim() === "ok"){
-        form.reset();
-        successMessage.style.display = "block";
-      } else {
-        throw new Error(text);
+      if(rect.bottom > 0 && rect.top < windowHeight){
+        const offset = rect.top * -0.18;
+        bg.style.transform = `translateY(${offset}px) scale(1.08)`;
       }
-
-    } catch(err){
-      errorMessage.style.display = "block";
-      errorMessage.textContent = err.message;
     }
 
-    btn.disabled = false;
-    btn.textContent = 'Enviar postulación';
+    window.addEventListener('scroll', moveParallax, { passive:true });
+    window.addEventListener('load', moveParallax);
+    window.addEventListener('resize', moveParallax);
+  })();
+
+  // MULTISTEP FORM
+  (function(){
+    const steps = document.querySelectorAll('.apply-step');
+    const nextBtns = document.querySelectorAll('.apply-btn-next');
+    const prevBtns = document.querySelectorAll('.apply-btn-prev');
+    const progressBar = document.querySelector('.apply-progress-fill');
+    const form = document.getElementById('applyMultiStepForm');
+    const successMessage = document.getElementById('applySuccessMessage');
+    const errorMessage = document.getElementById('applyErrorMessage');
+
+    if(!form) return;
+
+    let currentStep = 0;
+
+    function updateSteps(){
+      steps.forEach((step, index) => {
+        step.classList.toggle('active', index === currentStep);
+      });
+
+      if(progressBar){
+        progressBar.style.width = ((currentStep + 1) / steps.length) * 100 + '%';
+      }
+    }
+
+    function validateStep(stepIndex){
+      const currentFields = steps[stepIndex].querySelectorAll('input, select, textarea');
+
+      for(const field of currentFields){
+        if(!field.hasAttribute('required')) continue;
+
+        if(field.type === 'radio'){
+          const radioGroup = steps[stepIndex].querySelectorAll(`input[name="${field.name}"]`);
+          const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+          if(!isChecked){
+            alert('Por favor completá todos los campos obligatorios.');
+            return false;
+          }
+        } else if(field.type === 'file'){
+          if(!field.files || field.files.length === 0){
+            field.focus();
+            alert('Por favor completá todos los campos obligatorios.');
+            return false;
+          }
+        } else if(!field.value){
+          field.focus();
+          alert('Por favor completá todos los campos obligatorios.');
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    nextBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(validateStep(currentStep) && currentStep < steps.length - 1){
+          currentStep++;
+          updateSteps();
+        }
+      });
+    });
+
+    prevBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(currentStep > 0){
+          currentStep--;
+          updateSteps();
+        }
+      });
+    });
+
+    function getValue(name){
+      const field = form.querySelector(`[name="${name}"]`);
+      return field ? field.value : '';
+    }
+
+    function getRadioValue(name){
+      const checked = form.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    }
+
+    function fileToBase64(file){
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const base64 = String(reader.result).split(',')[1];
+          resolve({
+            name: file.name,
+            type: file.type,
+            data: base64
+          });
+        };
+
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function filesToArray(inputName){
+      const input = form.querySelector(`input[name="${inputName}"]`);
+      if(!input || !input.files || !input.files.length) return [];
+      return Promise.all(Array.from(input.files).map(fileToBase64));
+    }
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      if(!validateStep(currentStep)) return;
+
+      if(successMessage) successMessage.style.display = 'none';
+      if(errorMessage){
+        errorMessage.style.display = 'none';
+        errorMessage.textContent = 'Ocurrió un error al enviar el formulario. Intentá nuevamente.';
+      }
+
+      const btn = form.querySelector('.apply-btn-submit');
+      if(btn){
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+      }
+
+      try{
+        const payload = {
+          nombre: getValue('nombre'),
+          apellido: getValue('apellidos'),
+          sexo: getValue('sexo'),
+          fecha: getValue('fechaNacimiento'),
+          pais_nac: getValue('paisNacimiento'),
+          pais_res: getValue('paisResidencia'),
+          idioma: getValue('idioma'),
+          email: getValue('email'),
+          telefono: getValue('telefono'),
+          of: getRadioValue('tieneOnlyFans'),
+          link: getValue('perfilOnlyfans'),
+          foto_rostro_files: await filesToArray('fotoRostro'),
+          foto_cuerpo_files: await filesToArray('fotoCuerpo'),
+          foto_casual_files: await filesToArray('fotoCasual')
+        };
+
+        const res = await fetch('https://script.google.com/macros/s/AKfycby-yJgEyLzwEINSbBrIDTn0es44mEHZCcE5Dk6uoHWxP91jDcMwKE-EHcEqKwB3B4BQEA/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const text = await res.text();
+        console.log('Respuesta Apps Script:', text);
+
+        if(text.trim().toLowerCase() === 'ok'){
+          form.reset();
+          currentStep = 0;
+          updateSteps();
+          if(successMessage) successMessage.style.display = 'block';
+        } else {
+          throw new Error(text);
+        }
+
+      } catch(err){
+        console.error('Error al enviar formulario:', err);
+        if(errorMessage){
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Error al enviar: ' + err.message;
+        }
+      } finally {
+        if(btn){
+          btn.disabled = false;
+          btn.textContent = 'Enviar postulación';
+        }
+      }
+    });
+
+    updateSteps();
+  })();
+
+  // FAQ
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question')?.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
   });
 
-});
+  // Animated counters
+  const counters = document.querySelectorAll('.counter');
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+      if (el.dataset.done === 'true') return;
+
+      const target = Number(el.dataset.target || 0);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600;
+      const startTime = performance.now();
+
+      function updateCounter(now){
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(progress * target);
+        el.textContent = `${prefix}${value}${suffix}`;
+
+        if (progress < 1){
+          requestAnimationFrame(updateCounter);
+        } else {
+          el.textContent = `${prefix}${target}${suffix}`;
+        }
+      }
+
+      el.dataset.done = 'true';
+      requestAnimationFrame(updateCounter);
+    });
+  }, { threshold: 0.35 });
+
+  counters.forEach(counter => counterObserver.observe(counter));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+  });
 </script>

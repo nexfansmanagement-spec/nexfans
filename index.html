@@ -1315,6 +1315,40 @@
       line-height:1.6;
     }
 
+
+    .apply-upload-info{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin:0 0 8px;
+      padding:18px 18px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .apply-upload-info h4{
+      margin:0;
+      font-size:1.02rem;
+      line-height:1.6;
+      color:#fff;
+    }
+
+    .apply-upload-info p{
+      margin:0;
+      line-height:1.75;
+      color:rgba(255,255,255,0.90);
+    }
+
+    .apply-upload-info .apply-hint{
+      margin-top:4px;
+      padding:0;
+      background:none;
+      border:none;
+      color:rgba(255,255,255,0.80);
+      line-height:1.75;
+    }
+
     .apply-form-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -2537,7 +2571,9 @@
             <h3>Datos de contacto</h3>
             <p class="apply-step-subtitle">Asegurate de poner un email y teléfono que uses realmente.</p>
 
-            <div class="apply-form-grid">
+  
+
+<div class="apply-form-grid">
               <div class="apply-field">
                 <label for="applyEmail">Email *</label>
                 <input type="email" id="applyEmail" name="email" placeholder="ejemplo@email.com" required>
@@ -2575,9 +2611,9 @@
           </div>
 
           <div class="apply-step">
-            <h3>Sobre tu postulación</h3>
+            <h3>Sobre OnlyFans</h3>
             <p class="apply-step-subtitle">
-              Contanos un poco más sobre vos. Las fotos deben ser solo imágenes, claras y de buena calidad.
+              Completá esta última parte para que podamos evaluar mejor tu perfil.
             </p>
 
             <div class="apply-form-grid">
@@ -2587,21 +2623,37 @@
               </div>
 
               <div class="apply-field full">
+                <div class="apply-upload-info">
+                  <h4>Sube las siguientes fotos para que podamos evaluar tu perfil:</h4>
+
+                  <p><strong>Foto de rostro:</strong> una foto clara de tu cara sin maquillaje excesivo, en luz natural.</p>
+
+                  <p><strong>Foto de cuerpo entero:</strong> una foto que muestre tu cuerpo completo, preferiblemente en ropa ajustada, lencería o vestido de baño de dos piezas.</p>
+
+                  <p><strong>Foto casual:</strong> una foto en un atuendo o estilo que represente tu personalidad o marca personal.</p>
+
+                  <div class="apply-hint">
+                    <strong>Importante:</strong><br>
+                    • Subir 1 foto por cada categoría.<br>
+                    • Cada foto debe pesar menos de 20 MB.<br>
+                    • Solo puedes subir fotos / imágenes.
+                  </div>
+                </div>
+              </div>
+
+              <div class="apply-field full">
                 <label for="applyFotoRostro">Foto de rostro *</label>
                 <input type="file" id="applyFotoRostro" name="fotoRostro" accept="image/*" required>
-                <div class="apply-hint">Subí entre 3 y 5 fotos en esta sección si querés seleccionar varias desde tu dispositivo.</div>
               </div>
 
               <div class="apply-field full">
                 <label for="applyFotoCuerpo">Foto de cuerpo entero *</label>
                 <input type="file" id="applyFotoCuerpo" name="fotoCuerpo" accept="image/*" required>
-                <div class="apply-hint">Ropa ajustada, lencería o bikini. Solo imágenes.</div>
               </div>
 
               <div class="apply-field full">
                 <label for="applyFotoCasual">Foto casual *</label>
                 <input type="file" id="applyFotoCasual" name="fotoCasual" accept="image/*" required>
-                <div class="apply-hint">Intentá que sean fotos nítidas y bien iluminadas.</div>
               </div>
             </div>
 

@@ -2483,194 +2483,137 @@
           <div class="apply-progress-fill" id="applyProgressBar"></div>
         </div>
 
-        <form id="applyMultiStepForm">
-          <div class="apply-step active">
-            <h3>Datos personales</h3>
-            <p class="apply-step-subtitle">Completá esta información básica para continuar con tu postulación.</p>
+       <form id="applyMultiStepForm" novalidate>
+  <div class="apply-step active">
+    <h3>Datos personales</h3>
+    <p class="apply-step-subtitle">Completá esta información básica para continuar con tu postulación.</p>
 
-            <div class="apply-form-grid">
-              <div class="apply-field">
-                <label for="applyNombre">Nombre *</label>
-                <input type="text" id="applyNombre" name="nombre" placeholder="Tu nombre" required>
-              </div>
+    <div class="apply-form-grid">
+      <div class="apply-field">
+        <label for="applyNombre">Nombre *</label>
+        <input type="text" id="applyNombre" name="nombre" placeholder="Tu nombre" required>
+      </div>
 
-              <div class="apply-field">
-                <label for="applyApellido">Apellidos *</label>
-                <input type="text" id="applyApellido" name="apellidos" placeholder="Tus apellidos" required>
-              </div>
+      <div class="apply-field">
+        <label for="applyApellido">Apellidos *</label>
+        <input type="text" id="applyApellido" name="apellidos" placeholder="Tus apellidos" required>
+      </div>
 
-              <div class="apply-field">
-                <label for="applySexo">Sexo *</label>
-                <select id="applySexo" name="sexo" required>
-                  <option value="">Seleccionar</option>
-                  <option>Femenino</option>
-                  <option>Masculino</option>
-                  <option>Otro</option>
-                </select>
-              </div>
+      <div class="apply-field">
+        <label for="applySexo">Sexo *</label>
+        <select id="applySexo" name="sexo" required>
+          <option value="">Seleccionar</option>
+          <option>Femenino</option>
+          <option>Masculino</option>
+          <option>Otro</option>
+        </select>
+      </div>
 
-              <div class="apply-field">
-                <label for="applyFechaNacimiento">Fecha de nacimiento *</label>
-                <input type="date" id="applyFechaNacimiento" name="fechaNacimiento" required>
-              </div>
+      <div class="apply-field">
+        <label for="applyFechaNacimiento">Fecha de nacimiento *</label>
+        <input type="date" id="applyFechaNacimiento" name="fechaNacimiento" required>
+      </div>
 
-              <div class="apply-field">
-                <label for="applyPaisNacimiento">País de nacimiento *</label>
-                <select id="applyPaisNacimiento" name="paisNacimiento" required>
-                  <option value="">Seleccionar</option>
-                  <option>Argentina</option>
-                  <option>Bolivia</option>
-                  <option>Brasil</option>
-                  <option>Chile</option>
-                  <option>Colombia</option>
-                  <option>Paraguay</option>
-                  <option>Perú</option>
-                  <option>Uruguay</option>
-                  <option>Venezuela</option>
-                  <option>Otro</option>
-                </select>
-              </div>
+      <div class="apply-field">
+        <label for="applyPaisNacimiento">País de nacimiento *</label>
+        <select id="applyPaisNacimiento" name="paisNacimiento" required>
+          <option value="">Seleccionar</option>
+          <option>Argentina</option>
+          <option>Bolivia</option>
+          <option>Brasil</option>
+          <option>Chile</option>
+          <option>Colombia</option>
+          <option>Paraguay</option>
+          <option>Perú</option>
+          <option>Uruguay</option>
+          <option>Venezuela</option>
+          <option>Otro</option>
+        </select>
+      </div>
 
-              <div class="apply-field">
-                <label for="applyPaisResidencia">País de residencia *</label>
-                <select id="applyPaisResidencia" name="paisResidencia" required>
-                  <option value="">Seleccionar</option>
-                  <option>Argentina</option>
-                  <option>Bolivia</option>
-                  <option>Brasil</option>
-                  <option>Chile</option>
-                  <option>Colombia</option>
-                  <option>Paraguay</option>
-                  <option>Perú</option>
-                  <option>Uruguay</option>
-                  <option>Venezuela</option>
-                  <option>Otro</option>
-                </select>
-              </div>
+      <div class="apply-field">
+        <label for="applyPaisResidencia">País de residencia *</label>
+        <select id="applyPaisResidencia" name="paisResidencia" required>
+          <option value="">Seleccionar</option>
+          <option>Argentina</option>
+          <option>Bolivia</option>
+          <option>Brasil</option>
+          <option>Chile</option>
+          <option>Colombia</option>
+          <option>Paraguay</option>
+          <option>Perú</option>
+          <option>Uruguay</option>
+          <option>Venezuela</option>
+          <option>Otro</option>
+        </select>
+      </div>
 
-              <div class="apply-field full">
-                <label for="applyIdioma">Idioma de habla principal *</label>
-                <select id="applyIdioma" name="idioma" required>
-                  <option value="">Seleccionar</option>
-                  <option>Español</option>
-                  <option>Inglés</option>
-                  <option>Portugués</option>
-                  <option>Guaraní</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-            </div>
+      <div class="apply-field full">
+        <label for="applyIdioma">Idioma de habla principal *</label>
+        <select id="applyIdioma" name="idioma" required>
+          <option value="">Seleccionar</option>
+          <option>Español</option>
+          <option>Inglés</option>
+          <option>Portugués</option>
+          <option>Guaraní</option>
+          <option>Otro</option>
+        </select>
+      </div>
+    </div>
 
-            <div class="apply-form-buttons">
-              <span></span>
-              <button type="button" class="apply-btn apply-btn-next">Siguiente</button>
-            </div>
-          </div>
+    <div class="apply-form-buttons">
+      <span></span>
+      <button type="button" class="apply-btn apply-btn-next">Siguiente</button>
+    </div>
+  </div>
 
-          <div class="apply-step">
-            <h3>Datos de contacto</h3>
-            <p class="apply-step-subtitle">Asegurate de poner un email y teléfono que uses realmente.</p>
+  <div class="apply-step">
+    <h3>Datos de contacto</h3>
+    <p class="apply-step-subtitle">Asegurate de poner un email y teléfono que uses realmente.</p>
 
-  
+    <div class="apply-form-grid">
+      <div class="apply-field">
+        <label for="applyEmail">Email *</label>
+        <input type="email" id="applyEmail" name="email" placeholder="ejemplo@email.com" required>
+      </div>
 
-<div class="apply-form-grid">
-              <div class="apply-field">
-                <label for="applyEmail">Email *</label>
-                <input type="email" id="applyEmail" name="email" placeholder="ejemplo@email.com" required>
-              </div>
+      <div class="apply-field">
+        <label for="applyTelefono">Teléfono *</label>
+        <input type="tel" id="applyTelefono" name="telefono" placeholder="+54..." required>
+      </div>
+    </div>
 
-              <div class="apply-field">
-                <label for="applyTelefono">Teléfono *</label>
-                <input type="tel" id="applyTelefono" name="telefono" placeholder="+54..." required>
-              </div>
+    <div class="apply-form-buttons">
+      <button type="button" class="apply-btn apply-btn-prev">Anterior</button>
+      <button type="button" class="apply-btn apply-btn-next">Siguiente</button>
+    </div>
+  </div>
 
-              <div class="apply-field full">
-                <label>¿Tenés cuenta de OnlyFans? *</label>
-                <div class="apply-radio-group">
-                  <label class="apply-radio-option">
-                    <input type="radio" name="tieneOnlyFans" value="Sí" required>
-                    <span>Sí</span>
-                  </label>
-                  <label class="apply-radio-option">
-                    <input type="radio" name="tieneOnlyFans" value="No" required>
-                    <span>No</span>
-                  </label>
-                </div>
-              </div>
+  <div class="apply-step">
+    <h3>Último paso</h3>
+    <p class="apply-step-subtitle">Contanos un poco sobre vos para que podamos evaluar mejor tu perfil.</p>
 
-              <div class="apply-field full">
-                <label for="applyPerfilOnlyfans">Link de tu perfil de OnlyFans</label>
-                <input type="url" id="applyPerfilOnlyfans" name="perfilOnlyfans" placeholder="https://...">
-              </div>
-            </div>
+    <div class="apply-form-grid">
+      <div class="apply-field full">
+        <label for="applyMensaje">Contanos sobre vos *</label>
+        <textarea id="applyMensaje" name="mensaje" required placeholder="Escribí acá una breve presentación..."></textarea>
+      </div>
+    </div>
 
-            <div class="apply-form-buttons">
-              <button type="button" class="apply-btn apply-btn-prev">Anterior</button>
-              <button type="button" class="apply-btn apply-btn-next">Siguiente</button>
-            </div>
-          </div>
+    <div class="apply-form-buttons">
+      <button type="button" class="apply-btn apply-btn-prev">Anterior</button>
+      <button type="submit" class="apply-btn apply-btn-submit">Enviar postulación</button>
+    </div>
+  </div>
 
-          <div class="apply-step">
-            <h3>Sobre OnlyFans</h3>
-            <p class="apply-step-subtitle">
-              Completá esta última parte para que podamos evaluar mejor tu perfil.
-            </p>
+  <div class="apply-success-message" id="applySuccessMessage">
+    Tu formulario fue enviado correctamente.
+  </div>
 
-            <div class="apply-form-grid">
-              <div class="apply-field full">
-                <label for="applyMensaje">Contanos sobre vos *</label>
-                <textarea id="applyMensaje" name="mensaje" required placeholder="Escribí acá una breve presentación..."></textarea>
-              </div>
-
-              <div class="apply-field full">
-                <div class="apply-upload-info">
-                  <h4>Sube las siguientes fotos para que podamos evaluar tu perfil:</h4>
-
-                  <p><strong>Foto de rostro:</strong> una foto clara de tu cara sin maquillaje excesivo, en luz natural.</p>
-
-                  <p><strong>Foto de cuerpo entero:</strong> una foto que muestre tu cuerpo completo, preferiblemente en ropa ajustada, lencería o vestido de baño de dos piezas.</p>
-
-                  <p><strong>Foto casual:</strong> una foto en un atuendo o estilo que represente tu personalidad o marca personal.</p>
-
-                  <div class="apply-hint">
-                    <strong>Importante:</strong><br>
-                    • Subir 1 foto por cada categoría.<br>
-                    • Cada foto debe pesar menos de 20 MB.<br>
-                    • Solo puedes subir fotos / imágenes.
-                  </div>
-                </div>
-              </div>
-
-              <div class="apply-field full">
-                <label for="applyFotoRostro">Foto de rostro *</label>
-                <input type="file" id="applyFotoRostro" name="fotoRostro" accept="image/*" required>
-              </div>
-
-              <div class="apply-field full">
-                <label for="applyFotoCuerpo">Foto de cuerpo entero *</label>
-                <input type="file" id="applyFotoCuerpo" name="fotoCuerpo" accept="image/*" required>
-              </div>
-
-              <div class="apply-field full">
-                <label for="applyFotoCasual">Foto casual *</label>
-                <input type="file" id="applyFotoCasual" name="fotoCasual" accept="image/*" required>
-              </div>
-            </div>
-
-            <div class="apply-form-buttons">
-              <button type="button" class="apply-btn apply-btn-prev">Anterior</button>
-              <button type="submit" class="apply-btn apply-btn-submit">Enviar postulación</button>
-            </div>
-          </div>
-
-          <div class="apply-success-message" id="applySuccessMessage">
-            Tu formulario fue enviado correctamente.
-          </div>
-
-          <div class="apply-error-message" id="applyErrorMessage">
-            Ocurrió un error al enviar el formulario. Intentá nuevamente.
-          </div>
-        </form>
+  <div class="apply-error-message" id="applyErrorMessage">
+    Ocurrió un error al enviar el formulario. Intentá nuevamente.
+  </div>
+</form>
       </div>
     </div>
   </section>
@@ -2751,7 +2694,6 @@
 
   
   <script>
-  // PARALLAX DE LA SECCIÓN APLICÁ AHORA
   (function(){
     const bg = document.querySelector('.apply-motion-bg');
     const section = document.querySelector('.apply-motion-section');
@@ -2771,12 +2713,11 @@
     window.addEventListener('resize', moveParallax);
   })();
 
-  // MULTISTEP FORM + ENVÍO A APPS SCRIPT
   (function(){
     const steps = document.querySelectorAll('.apply-step');
     const nextBtns = document.querySelectorAll('.apply-btn-next');
     const prevBtns = document.querySelectorAll('.apply-btn-prev');
-    const progressBar = document.querySelector('.apply-progress-fill');
+    const progressBar = document.getElementById('applyProgressBar');
     const form = document.getElementById('applyMultiStepForm');
     const successMessage = document.getElementById('applySuccessMessage');
     const errorMessage = document.getElementById('applyErrorMessage');
@@ -2801,20 +2742,7 @@
       for(const field of currentFields){
         if(!field.hasAttribute('required')) continue;
 
-        if(field.type === 'radio'){
-          const radioGroup = steps[stepIndex].querySelectorAll(`input[name="${field.name}"]`);
-          const isChecked = Array.from(radioGroup).some(radio => radio.checked);
-          if(!isChecked){
-            alert('Por favor completá todos los campos obligatorios.');
-            return false;
-          }
-        } else if(field.type === 'file'){
-          if(!field.files || field.files.length === 0){
-            field.focus();
-            alert('Por favor completá todos los campos obligatorios.');
-            return false;
-          }
-        } else if(!field.value){
+        if(!field.value || !String(field.value).trim()){
           field.focus();
           alert('Por favor completá todos los campos obligatorios.');
           return false;
@@ -2822,6 +2750,11 @@
       }
 
       return true;
+    }
+
+    function getValue(name){
+      const field = form.querySelector(`[name="${name}"]`);
+      return field ? field.value.trim() : '';
     }
 
     nextBtns.forEach(btn => {
@@ -2841,38 +2774,6 @@
         }
       });
     });
-
-    function getValue(name){
-      const field = form.querySelector(`[name="${name}"]`);
-      return field ? field.value : '';
-    }
-
-    function getRadioValue(name){
-      const checked = form.querySelector(`input[name="${name}"]:checked`);
-      return checked ? checked.value : '';
-    }
-
-    function fileToBase64(file){
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const base64 = String(reader.result).split(',')[1];
-          resolve({
-            name: file.name,
-            type: file.type,
-            data: base64
-          });
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-
-    async function filesToArray(inputName){
-      const input = form.querySelector(`input[name="${inputName}"]`);
-      if(!input || !input.files || !input.files.length) return [];
-      return Promise.all(Array.from(input.files).map(fileToBase64));
-    }
 
     form.addEventListener('submit', async function(e){
       e.preventDefault();
@@ -2902,12 +2803,7 @@
           idioma: getValue('idioma'),
           email: getValue('email'),
           telefono: getValue('telefono'),
-          of: getRadioValue('tieneOnlyFans'),
-          link: getValue('perfilOnlyfans'),
-          mensaje: getValue('mensaje'),
-          foto_rostro_files: await filesToArray('fotoRostro'),
-          foto_cuerpo_files: await filesToArray('fotoCuerpo'),
-          foto_casual_files: await filesToArray('fotoCasual')
+          mensaje: getValue('mensaje')
         };
 
         const res = await fetch('https://script.google.com/macros/s/AKfycby-yJgEyLzwEINSbBrIDTn0es44mEHZCcE5Dk6uoHWxP91jDcMwKE-EHcEqKwB3B4BQEA/exec', {
@@ -2926,13 +2822,10 @@
           currentStep = 0;
           updateSteps();
           if(successMessage) successMessage.style.display = 'block';
-          window.scrollTo({
-            top: document.getElementById('aplica-ahora').offsetTop - 80,
-            behavior: 'smooth'
-          });
         } else {
-          throw new Error(text || 'Error desconocido al enviar');
+          throw new Error(text || 'Error al enviar');
         }
+
       } catch(err){
         console.error('Error al enviar formulario:', err);
         if(errorMessage){
@@ -2950,7 +2843,6 @@
     updateSteps();
   })();
 
-  // FAQ
   document.querySelectorAll('.faq-item').forEach(item => {
     item.querySelector('.faq-question')?.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
@@ -2959,7 +2851,6 @@
     });
   });
 
-  // CONTADORES
   const counters = document.querySelectorAll('.counter');
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -2990,9 +2881,9 @@
       requestAnimationFrame(updateCounter);
     });
   }, { threshold: 0.35 });
+
   counters.forEach(counter => counterObserver.observe(counter));
 
-  // SCROLL REVEAL
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -3000,15 +2891,14 @@
         entry.target.classList.add('active');
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold:0.15 });
+
   reveals.forEach(el => observer.observe(el));
 
-  // INTRO
   window.addEventListener('load', () => {
     document.body.classList.add('loaded');
   });
 </script>
-
   <a href="https://wa.me/5492643160729" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>

@@ -2598,6 +2598,14 @@
         <label for="applyMensaje">Contanos sobre vos *</label>
         <textarea id="applyMensaje" name="mensaje" required placeholder="Escribí acá una breve presentación..."></textarea>
       </div>
+      <div class="apply-field full">
+  <label>Modalidad de pago *</label>
+  <select name="modalidad_pago" required>
+    <option value="">Seleccionar opción</option>
+    <option value="Sueldo fijo">Sueldo fijo (ingreso estable)</option>
+    <option value="Porcentaje">Con porcentaje (mayor ganancia)</option>
+  </select>
+</div>
     </div>
 
     <div class="apply-form-buttons">
@@ -2806,7 +2814,7 @@
           mensaje: getValue('mensaje')
         };
 
-        const res = await fetch('https://script.google.com/macros/s/AKfycbwrHUilN_GzZpMSRuZ9ueF970AoWH51nDMoWsDKbdUGomHYfmMK9KlJZ_cc7cjdP_0SoA/exec', {
+        const res = await fetch('https://script.google.com/macros/s/AKfycbw-CscARUbm0wlo4RFZXTq6b2I_jiKg-1hL1TsoaRY0lpXjqH1K372B-og4fJWbq4v0gg/exec', {
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain;charset=utf-8'

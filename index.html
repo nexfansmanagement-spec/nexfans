@@ -2199,28 +2199,28 @@
 </style>
 </head>
 <script>
-let lastScroll = 0;
-const topbar = document.querySelector('.topbar');
+document.addEventListener("DOMContentLoaded", function () {
+  let lastScroll = 0;
+  const topbar = document.querySelector('.topbar');
 
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
 
-  // Evita que se esconda al inicio
-  if (currentScroll <= 50) {
-    topbar.classList.remove('hide');
-    return;
-  }
+    if (!topbar) return;
 
-  // Si baja
-  if (currentScroll > lastScroll) {
-    topbar.classList.add('hide');
-  } 
-  // Si sube
-  else {
-    topbar.classList.remove('hide');
-  }
+    if (currentScroll <= 50) {
+      topbar.classList.remove('hide');
+      return;
+    }
 
-  lastScroll = currentScroll;
+    if (currentScroll > lastScroll) {
+      topbar.classList.add('hide');
+    } else {
+      topbar.classList.remove('hide');
+    }
+
+    lastScroll = currentScroll;
+  });
 });
 </script>
   <body>

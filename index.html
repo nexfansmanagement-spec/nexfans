@@ -61,18 +61,26 @@
       z-index:-1;
     }
 
-    .topbar{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:1000;
-      background:rgba(255,255,255,0.10);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(255,255,255,0.18);
-      box-shadow:0 10px 35px rgba(0,0,0,0.22);
-    }
+   .topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(255,255,255,0.10);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.18);
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+.topbar.hide{
+  transform:translateY(-100%);
+  opacity:0;
+}
 
     .topbar::after{
       content:"";
@@ -2190,7 +2198,32 @@
 
 </style>
 </head>
-<body>
+<script>
+let lastScroll = 0;
+const topbar = document.querySelector('.topbar');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  // Evita que se esconda al inicio
+  if (currentScroll <= 50) {
+    topbar.classList.remove('hide');
+    return;
+  }
+
+  // Si baja
+  if (currentScroll > lastScroll) {
+    topbar.classList.add('hide');
+  } 
+  // Si sube
+  else {
+    topbar.classList.remove('hide');
+  }
+
+  lastScroll = currentScroll;
+});
+</script>
+  <body>
   <div class="overlay"></div>
 
   <header class="topbar">
